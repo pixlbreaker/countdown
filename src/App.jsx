@@ -5,15 +5,24 @@ function App() {
 
   const [target, setTarget] = useState(null);
   const [guess, setGuess] = useState(null);
+  const [numberList, setNumberList] = useState([]);
 
   const createTargetNumber = () => {
     let randTarget = Math.floor(Math.random() * 900) + 100;
     setTarget(randTarget);
   }
 
-  const checkNumber = () => {
-    console.log(guess);
+  const createNumberList = () => {
+    let numList = new Array(10);
+    numList = numList.fill(0).map(() => Math.floor(Math.random() * 10));
+    setNumberList(numList);
   }
+
+  const checkNumber = () => {
+    alert(guess);
+  }
+
+  createNumberList();
 
   return (
     <div>
@@ -26,6 +35,12 @@ function App() {
       <button onClick={checkNumber}>Check Number</button>
 
       {guess && <h3>Guess: {guess}</h3>}
+
+      {/* <button onClick={createNumberList}>Create List</button> */}
+      {numberList &&
+        <ul>{numberList.map((item, index))}
+          <li key={index}>{item}</li>
+        </ul>}
     </div>
   );
 }
